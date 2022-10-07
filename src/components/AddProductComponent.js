@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -6,7 +7,9 @@ import {
   TextField,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useProductContext } from "../context/productContext";
 import { useForm, isRequired } from "../hooks/useForm";
 export const AddProductComponent = (onSubmit) => {
@@ -20,7 +23,10 @@ export const AddProductComponent = (onSubmit) => {
     Width: "",
     Length: "",
   };
+  const { addProduct } = useProductContext();
+  const navigate = useNavigate();
   const [dvdFields, setDvdFields] = useState(false);
+
   const showDVDFields = () => {
     setDvdFields(true);
     setfurnitureFields(false);
@@ -43,7 +49,8 @@ export const AddProductComponent = (onSubmit) => {
   const handleChange = (e) => {
     setProductType(e.target.value);
   };
-  const { addProduct } = useProductContext();
+ 
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const SKU = values.SKU;
@@ -55,7 +62,9 @@ export const AddProductComponent = (onSubmit) => {
     const Width = values.Width;
     const Length = values.Length;
     addProduct({ SKU, Name, Price, Size, Weight, Height, Width, Length });
-  };
+    navigate("/");
+
+}
   const validations = [
     ({ SKU }) =>
       SKU < 0
@@ -256,6 +265,9 @@ export const AddProductComponent = (onSubmit) => {
           />
         </FormControl>
       )}
+      <Button onClick={submitHandler}>
+        Save Product
+      </Button>
     </FormControl>
   );
 };

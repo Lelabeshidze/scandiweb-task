@@ -5,8 +5,8 @@ const UseAxios = (url) => {
  const [data, setData] = useState([]);
  useEffect(() => {
  const  getData = async () => {
-    const { data } = await instance.get(url);
-    setData(data)
+    const { data:productsData } = await instance.get(url);
+    setData(productsData);
     
  }
  getData();
