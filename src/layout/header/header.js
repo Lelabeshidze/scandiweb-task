@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div>
-      <Link to='/addproduct'>
-        <Button>Add Product</Button>
+      {/* <Link to='/addproduct'>
+        <Button variant="outlined">Add Product</Button>
       </Link>
+      <Button variant="outlined" id="delete-product-btn">Mass Delete</Button> */}
     </div>
   );
 };

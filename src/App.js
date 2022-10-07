@@ -7,7 +7,7 @@ import MainLayout from "./layout";
 function App() {
 
   return (
-    <div>
+    <div className="App">
 <ProductContextProvider>
   <MainLayout>
       <Routes>
