@@ -146,147 +146,149 @@ export const AddProductComponent = (onSubmit) => {
           <Typography>Product Add</Typography>
         </div>
         <div className="Flex FlexBtn">
-        <div className="Padding">
-          <Button
-            onClick={submitHandler}
-            variant="contained"
-            sx={{ width: "150px" }}
-          >
-            Save
-          </Button>
-        </div>
-        <div>
-          <Button variant="outlined" sx={{ width: "150px" }}>
-            Cancel
-          </Button>
-        </div>
+          <div className="Padding">
+            <Button
+              onClick={submitHandler}
+              variant="contained"
+              sx={{ width: "150px" }}
+            >
+              Save
+            </Button>
+          </div>
+          <div>
+            <Button variant="outlined" sx={{ width: "150px" }}>
+              Cancel
+            </Button>
+          </div>
         </div>
       </div>
       <div className="Center" id="#product_form">
-      <FormControl sx={{width:"55%"}} >
-        <TextField
-          label="SKU"
-          type="number"
-          name="SKU"
-          required
-          value={values.SKU}
-          onChange={changeHandler}
-          error={!!values.SKU && !!errors.SKU}
-          helperText={values.SKU && errors.SKU}
-          margin="dense"
-        />
-        <TextField
-          label="Name"
-          type="text"
-          name="Name"
-          required
-          value={values.Name}
-          onChange={changeHandler}
-          error={!!values.Name && !!errors.Name}
-          helperText={values.Name && errors.Name}
-          margin="dense"
-        />
-        <TextField
-          label="Price"
-          type="number"
-          name="Price"
-          required
-          value={values.Price}
-          onChange={changeHandler}
-          error={!!values.Price && !!errors.Price}
-          helperText={values.Price && errors.Price}
-          margin="dense"
-        />
-        <Box>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Product Type</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={productType}
-              label="Product Type"
-              onChange={handleChange}
-            >
-              <MenuItem id="DVD" value="DVD" onClick={showDVDFields}>
-                DVD
-              </MenuItem>
-              <MenuItem
-                id="Furniture"
-                value="Furniture"
-                onClick={showfurnitureFields}
+        <FormControl sx={{ width: "55%" }} required={true}>
+          <TextField
+            label="SKU"
+            type="number"
+            name="SKU"
+            required
+            value={values.SKU}
+            onChange={changeHandler}
+            error={!!values.SKU && !!errors.SKU}
+            helperText={values.SKU && errors.SKU}
+            margin="dense"
+          />
+          <TextField
+            label="Name"
+            type="text"
+            name="Name"
+            required
+            value={values.Name}
+            onChange={changeHandler}
+            error={!!values.Name && !!errors.Name}
+            helperText={values.Name && errors.Name}
+            margin="dense"
+          />
+          <TextField
+            label="Price"
+            type="number"
+            name="Price"
+            required
+            value={values.Price}
+            onChange={changeHandler}
+            error={!!values.Price && !!errors.Price}
+            helperText={values.Price && errors.Price}
+            margin="dense"
+          />
+          <Box>
+            <FormControl fullWidth required={true}>
+              <InputLabel id="demo-simple-select-label">
+                Product Type
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={productType}
+                label="Product Type"
+                onChange={handleChange}
               >
-                Furniture
-              </MenuItem>
-              <MenuItem id="Book" value="Book" onClick={showBookFields}>
-                Book
-              </MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        {dvdFields && (
-          <TextField
-            label="Size"
-            type="number"
-            name="Size"
-            required
-            value={values.Size}
-            onChange={changeHandler}
-            error={!!values.Size && !!errors.Size}
-            helperText={values.Size && errors.Size}
-            margin="dense"
-          />
-        )}
-        {bookFields && (
-          <TextField
-            label="Weight"
-            type="number"
-            name="Weight"
-            required
-            value={values.Weight}
-            onChange={changeHandler}
-            error={!!values.Weight && !!errors.Weight}
-            helperText={values.Weight && errors.Weight}
-            margin="dense"
-          />
-        )}
-        {furnitureFields && (
-          <FormControl>
+                <MenuItem id="DVD" value="DVD" onClick={showDVDFields}>
+                  DVD
+                </MenuItem>
+                <MenuItem
+                  id="Furniture"
+                  value="Furniture"
+                  onClick={showfurnitureFields}
+                >
+                  Furniture
+                </MenuItem>
+                <MenuItem id="Book" value="Book" onClick={showBookFields}>
+                  Book
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          {dvdFields && (
             <TextField
-              label="Height"
+              label="Size"
               type="number"
-              name="Height"
+              name="Size"
               required
-              value={values.Height}
+              value={values.Size}
               onChange={changeHandler}
-              error={!!values.Height && !!errors.Height}
-              helperText={values.Height && errors.Height}
+              error={!!values.Size && !!errors.Size}
+              helperText={values.Size && errors.Size}
               margin="dense"
             />
+          )}
+          {bookFields && (
             <TextField
-              label="Width"
+              label="Weight"
               type="number"
-              name="Width"
+              name="Weight"
               required
-              value={values.Width}
+              value={values.Weight}
               onChange={changeHandler}
-              error={!!values.Width && !!errors.Width}
-              helperText={values.Width && errors.Width}
+              error={!!values.Weight && !!errors.Weight}
+              helperText={values.Weight && errors.Weight}
               margin="dense"
             />
-            <TextField
-              label="Length"
-              type="number"
-              name="Length"
-              required
-              value={values.Length}
-              onChange={changeHandler}
-              error={!!values.Length && !!errors.Length}
-              helperText={values.Length && errors.Length}
-              margin="dense"
-            />
-          </FormControl>
-        )}
-      </FormControl>
+          )}
+          {furnitureFields && (
+            <FormControl required={true}>
+              <TextField
+                label="Height"
+                type="number"
+                name="Height"
+                required
+                value={values.Height}
+                onChange={changeHandler}
+                error={!!values.Height && !!errors.Height}
+                helperText={values.Height && errors.Height}
+                margin="dense"
+              />
+              <TextField
+                label="Width"
+                type="number"
+                name="Width"
+                required
+                value={values.Width}
+                onChange={changeHandler}
+                error={!!values.Width && !!errors.Width}
+                helperText={values.Width && errors.Width}
+                margin="dense"
+              />
+              <TextField
+                label="Length"
+                type="number"
+                name="Length"
+                required
+                value={values.Length}
+                onChange={changeHandler}
+                error={!!values.Length && !!errors.Length}
+                helperText={values.Length && errors.Length}
+                margin="dense"
+              />
+            </FormControl>
+          )}
+        </FormControl>
       </div>
     </div>
   );

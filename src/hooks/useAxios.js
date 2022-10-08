@@ -17,4 +17,4 @@ const UseAxios = (url) => {
  };
 }
 
-export default UseAxios
+export default UseAxios;
