@@ -5,16 +5,15 @@ import AddNewProduct from "./pages/AddNewProduct";
 import ProductList from "./pages/ProductList";
 import MainLayout from "./layout";
 function App() {
-
   return (
     <div className="App">
-<ProductContextProvider>
-  <MainLayout>
-      <Routes>
-        <Route path="/" element={<ProductList/>}/>
-        <Route path="/addproduct" element={<AddNewProduct/>} />
-      </Routes>
-      </MainLayout>
+      <ProductContextProvider>
+        <MainLayout>
+          <Routes>
+            <Route path="/" element={<ProductList />} />
+            <Route path="/addproduct" element={<AddNewProduct />} />
+          </Routes>
+        </MainLayout>
       </ProductContextProvider>
     </div>
   );
