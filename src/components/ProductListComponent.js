@@ -50,7 +50,7 @@ const ProductListComponent = () => {
     <div>
       <div>
         <Link to="/add-product">
-          <Button variant="outlined" id="#product_form">
+          <Button variant="outlined" id="product_form" className="Add-btn">
             ADD
           </Button>
         </Link>

@@ -62,7 +62,7 @@ const ProductForm = () => {
     ) {
       addProduct(formValues);
       console.log(formValues)
-      // navigate("/");
+      navigate("/");
     } else setFormErrors(validationResultDVD);
 
     if (
@@ -113,10 +113,10 @@ const ProductForm = () => {
           </div>
         </div>
       </div>
-      <div className="Center" id="#product_form">
-        <FormControl sx={{ width: "55%" }} required={true} id="#product_form">
+      <div className="Center" id="product_form">
+        <FormControl sx={{ width: "55%" }} required={true} id="product_form">
           <TextField
-            id="#sku"
+            id="sku"
             label="SKU"
             type="number"
             name="SKU"
@@ -129,7 +129,7 @@ const ProductForm = () => {
           />
 
           <TextField
-            id="#name"
+            id="name"
             label="Name"
             type="text"
             name="Name"
@@ -141,7 +141,7 @@ const ProductForm = () => {
             margin="dense"
           />
           <TextField
-            id="#price"
+            id="price"
             label="Price($)"
             type="number"
             name="Price"
@@ -154,7 +154,7 @@ const ProductForm = () => {
           />
 
           <Box>
-            <FormControl fullWidth required={true} id="#product_form">
+            <FormControl fullWidth required={true} id="product_form">
               <InputLabel
                 id="demo-simple-select-label"
                 error={!!formErrors.Category}
@@ -212,7 +212,7 @@ const ProductForm = () => {
             />
           )}
           {Category === "Furniture" && (
-            <FormControl required={true} id="#product_form">
+            <FormControl required={true} id="product_form">
               <TextField
                 id="height"
                 label="Height"
@@ -226,7 +226,7 @@ const ProductForm = () => {
                 margin="dense"
               />
               <TextField
-                id="#width"
+                id="width"
                 label="Width"
                 type="number"
                 name="Width"
@@ -238,7 +238,7 @@ const ProductForm = () => {
                 margin="dense"
               />
               <TextField
-                id="#length"
+                id="length"
                 label="Length"
                 type="number"
                 name="Length"
