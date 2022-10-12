@@ -17,6 +17,7 @@ import { Box } from "@mui/system";
 import Validation from "./Validation";
 
 const ProductForm = () => {
+  const [Category, setShowHide] = useState("");
   const [formValues, setFormValues] = useState({
     SKU: "",
     Name: "",
@@ -26,6 +27,7 @@ const ProductForm = () => {
     Height: "",
     Width: "",
     Length: "",
+
   });
   const [formErrors, setFormErrors] = useState({});
   const { validateDVD, validateBook, validateFurniture } = Validation();
@@ -36,12 +38,11 @@ const ProductForm = () => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value,
-      showhide,
+      [name]: value,Category
     });
   };
 
-  const [showhide, setShowHide] = useState("");
+ 
   const handleshowhide = (e) => {
     const getForm = e.target.value;
     setShowHide(getForm);
@@ -53,30 +54,30 @@ const ProductForm = () => {
     const validationResultBook = validateBook(formValues);
     const validationResultFurniture = validateFurniture(formValues);
     if (
-      showhide === "DVD" &&
+      Category === "DVD" &&
       !validationResultDVD.SKU &&
       !validationResultDVD.Name &&
       !validationResultDVD.Price &&
       !validationResultDVD.Size
     ) {
       addProduct(formValues);
-      console.log(formValues);
-      console.log(validationResultDVD);
+      console.log(formValues)
+      // navigate("/");
     } else setFormErrors(validationResultDVD);
 
     if (
-      showhide === "Book" &&
+      Category === "Book" &&
       !validationResultBook.SKU &&
       !validationResultBook.Name &&
       !validationResultBook.Price &&
       !validationResultBook.Weight
     ) {
       addProduct(formValues);
-      console.log(formValues);
+      navigate("/");
     } else setFormErrors(validationResultBook);
 
     if (
-      showhide === "Furniture" &&
+      Category === "Furniture" &&
       !validationResultFurniture.SKU &&
       !validationResultFurniture.Name &&
       !validationResultFurniture.Price &&
@@ -85,7 +86,7 @@ const ProductForm = () => {
       !validationResultFurniture.Length
     ) {
       addProduct(formValues);
-      console.log(formValues);
+      navigate("/");
     } else setFormErrors(validationResultFurniture);
   };
 
@@ -156,14 +157,15 @@ const ProductForm = () => {
             <FormControl fullWidth required={true} id="#product_form">
               <InputLabel
                 id="demo-simple-select-label"
-                error={!!formErrors.showhide}
+                error={!!formErrors.Category}
               >
                 Product Type
               </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
-                id="demo-simple-select #productType"
-                value={showhide}
+                id="demo-simple-select productType"
+                name="Category"
+                value={Category}
                 label="Product Type"
                 onChange={(e) => handleshowhide(e)}
                 displayEmpty={false}
@@ -181,7 +183,7 @@ const ProductForm = () => {
             </FormControl>
           </Box>
 
-          {showhide === "DVD" && (
+          {Category === "DVD" && (
             <TextField
               id="size"
               label="Size"
@@ -195,7 +197,7 @@ const ProductForm = () => {
               margin="dense"
             />
           )}
-          {showhide === "Book" && (
+          {Category === "Book" && (
             <TextField
               id="weight"
               label="Weight"
@@ -209,7 +211,7 @@ const ProductForm = () => {
               margin="dense"
             />
           )}
-          {showhide === "Furniture" && (
+          {Category === "Furniture" && (
             <FormControl required={true} id="#product_form">
               <TextField
                 id="height"

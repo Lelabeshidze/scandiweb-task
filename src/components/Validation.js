@@ -50,8 +50,8 @@ const validateDVD = (values) => {
       } else if (values.SKU < 0) {
         errors.SKU = "SKU must be positive number";
       }
-      if (!values.showhide) {
-        errors.showhide = "Type is required";
+      if (!values.Category) {
+        errors.Category = "Type is required";
       }
       if (!values.Name) {
         errors.Name = "Name is required";
@@ -75,8 +75,8 @@ if (!values.SKU) {
   } else if (values.SKU < 0) {
     errors.SKU = "SKU must be positive number";
   }
-  if (!values.showhide) {
-    errors.showhide = "Type is required";
+  if (!values.Category) {
+    errors.Category = "Type is required";
   }
   if (!values.Name) {
     errors.Name = "Name is required";
@@ -100,8 +100,8 @@ const validateFurniture = (values) => {
       } else if (values.SKU < 0) {
         errors.SKU = "SKU must be positive number";
       }
-      if (!values.showhide) {
-        errors.showhide = "Type is required";
+      if (!values.Category) {
+        errors.Category = "Type is required";
       }
       if (!values.Name) {
         errors.Name = "Name is required";
