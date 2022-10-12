@@ -11,7 +11,7 @@ function App() {
         <MainLayout>
           <Routes>
             <Route path="/" element={<ProductList />} />
-            <Route path="/addproduct" element={<AddNewProduct />} />
+            <Route path="/add-product" element={<AddNewProduct />} />
           </Routes>
         </MainLayout>
       </ProductContextProvider>

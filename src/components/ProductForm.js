@@ -3,17 +3,21 @@ import { useState } from "react";
 import { useProductContext } from "../context/productContext";
 import { useNavigate } from "react-router-dom";
 import {
+  Alert,
   Button,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
+  Snackbar,
   TextField,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import Validation from "./Validation";
+
 const ProductForm = () => {
-  const ProductData = {
+  const [formValues, setFormValues] = useState({
     SKU: "",
     Name: "",
     Price: "",
@@ -22,117 +26,73 @@ const ProductForm = () => {
     Height: "",
     Width: "",
     Length: "",
-  };
-
-  const [formValues, setFormValues] = useState(ProductData);
+  });
   const [formErrors, setFormErrors] = useState({});
-  const [onSubmit, setOnSubmit] = useState(false);
-
+  const { validateDVD, validateBook, validateFurniture } = Validation();
   const { addProduct } = useProductContext();
   const navigate = useNavigate();
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
       [name]: value,
+      showhide,
     });
   };
+
+  const [showhide, setShowHide] = useState("");
+  const handleshowhide = (e) => {
+    const getForm = e.target.value;
+    setShowHide(getForm);
+  };
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const validationResult = validate(formValues);
+    const validationResultDVD = validateDVD(formValues);
+    const validationResultBook = validateBook(formValues);
+    const validationResultFurniture = validateFurniture(formValues);
     if (
-      validationResult.SKU ||
-      validationResult.Name ||
-      validationResult.Price ||
-      validationResult.Size ||
-      validationResult.Weight ||
-      validationResult.Height ||
-      validationResult.Length ||
-      validationResult.Width
+      showhide === "DVD" &&
+      !validationResultDVD.SKU &&
+      !validationResultDVD.Name &&
+      !validationResultDVD.Price &&
+      !validationResultDVD.Size
     ) {
-      setFormErrors(validationResult);
-    } else {
-      setOnSubmit(true);
-      const SKU = formValues.SKU;
-      const Name = formValues.Name;
-      const Price = formValues.Price;
-      const Size = formValues.Size;
-      const Weight = formValues.Weight;
-      const Height = formValues.Height;
-      const Width = formValues.Width;
-      const Length = formValues.Length;
-      addProduct({ SKU, Name, Price, Size, Weight, Height, Width, Length });
-      navigate("/");
-    }
+      addProduct(formValues);
+      console.log(formValues);
+      console.log(validationResultDVD);
+    } else setFormErrors(validationResultDVD);
+
+    if (
+      showhide === "Book" &&
+      !validationResultBook.SKU &&
+      !validationResultBook.Name &&
+      !validationResultBook.Price &&
+      !validationResultBook.Weight
+    ) {
+      addProduct(formValues);
+      console.log(formValues);
+    } else setFormErrors(validationResultBook);
+
+    if (
+      showhide === "Furniture" &&
+      !validationResultFurniture.SKU &&
+      !validationResultFurniture.Name &&
+      !validationResultFurniture.Price &&
+      !validationResultFurniture.Height &&
+      !validationResultFurniture.Width &&
+      !validationResultFurniture.Length
+    ) {
+      addProduct(formValues);
+      console.log(formValues);
+    } else setFormErrors(validationResultFurniture);
   };
 
-  const [dvdFields, setDvdFields] = useState(false);
-
-  const showDVDFields = () => {
-    setDvdFields(true);
-    setfurnitureFields(false);
-    setBookFields(false);
-  };
-  const [furnitureFields, setfurnitureFields] = useState(false);
-  const showfurnitureFields = () => {
-    setfurnitureFields(true);
-    setDvdFields(false);
-    setBookFields(false);
-  };
-  const [bookFields, setBookFields] = useState(false);
-  const showBookFields = () => {
-    setBookFields(true);
-    setDvdFields(false);
-    setfurnitureFields(false);
+  const cancel = () => {
+    navigate("/");
   };
 
-  const [productType, setProductType] = useState("");
-  const handleChange = (e) => {
-    setProductType(e.target.value);
-  };
-
-  const validate = (values) => {
-    const errors = {};
-    if (!values.SKU) {
-      errors.SKU = "SKU is required";
-    } else if (values.SKU < 0) {
-      errors.SKU = "SKU must be positive number";
-    }
-    if (!values.Name) {
-      errors.Name = "Name is required";
-    }
-    if (!values.Price) {
-      errors.Price = "Price is required";
-    } else if (values.Price < 0) {
-      errors.Price = "Price must be positive number";
-    }
-    if (!values.Size) {
-      errors.Size = "Size is required";
-    } else if (values.Size < 0) {
-      errors.Srice = "Size must be positive number";
-    }
-    if (!values.Weight) {
-      errors.Weight = "Weight is required";
-    } else if (values.Weight < 0) {
-      errors.Weight = "Weight must be positive number";
-    }
-    if (!values.Height) {
-      errors.Height = "Height is required";
-    } else if (values.Height < 0) {
-      errors.Height = "Height must be positive number";
-    }
-    if (!values.Length) {
-      errors.Length = "Length is required";
-    } else if (values.Length < 0) {
-      errors.Length = "Length must be positive number";
-    }
-    if (!values.Width) {
-      errors.Width = "Width is required";
-    } else if (values.Width < 0) {
-      errors.Width = "Width must be positive number";
-    }
-    return errors;
-  };
   return (
     <div>
       <div className="Flex">
@@ -146,16 +106,16 @@ const ProductForm = () => {
             </Button>
           </div>
           <div>
-            <Button variant="outlined" sx={{ width: "150px" }}>
+            <Button variant="outlined" sx={{ width: "150px" }} onClick={cancel}>
               Cancel
             </Button>
           </div>
         </div>
       </div>
-      <div className="Center" id="product_form">
-        <FormControl sx={{ width: "55%" }} required={true}>
+      <div className="Center" id="#product_form">
+        <FormControl sx={{ width: "55%" }} required={true} id="#product_form">
           <TextField
-            id="SKU"
+            id="#sku"
             label="SKU"
             type="number"
             name="SKU"
@@ -168,7 +128,7 @@ const ProductForm = () => {
           />
 
           <TextField
-            id="name"
+            id="#name"
             label="Name"
             type="text"
             name="Name"
@@ -180,8 +140,8 @@ const ProductForm = () => {
             margin="dense"
           />
           <TextField
-            id="price"
-            label="Price"
+            id="#price"
+            label="Price($)"
             type="number"
             name="Price"
             required
@@ -191,35 +151,37 @@ const ProductForm = () => {
             helperText={formErrors.Price}
             margin="dense"
           />
+
           <Box>
-            <FormControl fullWidth required={true}>
-              <InputLabel id="demo-simple-select-label">
+            <FormControl fullWidth required={true} id="#product_form">
+              <InputLabel
+                id="demo-simple-select-label"
+                error={!!formErrors.showhide}
+              >
                 Product Type
               </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
-                id="demo-simple-select productType"
-                value={productType}
+                id="demo-simple-select #productType"
+                value={showhide}
                 label="Product Type"
-                onChange={handleChange}
+                onChange={(e) => handleshowhide(e)}
+                displayEmpty={false}
               >
-                <MenuItem id="DVD" value="DVD" onClick={showDVDFields}>
+                <MenuItem id="DVD" name="DVD" value="DVD">
                   DVD
                 </MenuItem>
-                <MenuItem
-                  id="Furniture"
-                  value="Furniture"
-                  onClick={showfurnitureFields}
-                >
+                <MenuItem name="Furniture" id="Furniture" value="Furniture">
                   Furniture
                 </MenuItem>
-                <MenuItem id="Book" value="Book" onClick={showBookFields}>
+                <MenuItem id="Book" value="Book" name="Book">
                   Book
                 </MenuItem>
               </Select>
             </FormControl>
           </Box>
-          {dvdFields && (
+
+          {showhide === "DVD" && (
             <TextField
               id="size"
               label="Size"
@@ -233,7 +195,7 @@ const ProductForm = () => {
               margin="dense"
             />
           )}
-          {bookFields && (
+          {showhide === "Book" && (
             <TextField
               id="weight"
               label="Weight"
@@ -247,8 +209,8 @@ const ProductForm = () => {
               margin="dense"
             />
           )}
-          {furnitureFields && (
-            <FormControl required={true}>
+          {showhide === "Furniture" && (
+            <FormControl required={true} id="#product_form">
               <TextField
                 id="height"
                 label="Height"

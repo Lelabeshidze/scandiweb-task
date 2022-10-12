@@ -59,3 +59,12 @@ align-items: center;
 text-align: center;
 margin-top: 5%;
 }
+.ProductList{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.DeleteCheckbox{
+  display: flex;
+  justify-self: flex-start;
+}

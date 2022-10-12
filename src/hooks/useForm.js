@@ -1,43 +1,41 @@
-// import { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-// function validate(validations, values) {
-//   const errors = validations
-//     .map((validation) => validation(values))
-//     .filter((validation) => typeof validation === "object");
-//   return {
-//     isValid: errors.length === 0,
-//     errors: errors.reduce((errors, error) => ({ ...errors, ...error }), {}),
-//   };
-// }
+const useForm = () => {
+  const [dvdFields, setDvdFields] = useState(false);
 
-// export function useForm(
-//   initialState = [],
-//   validations = [],
-//   onSubmit = () => {}
-// ) {
-//   const { isValid: initialIsValid, errors: initialErrors } = validate(
-//     validations,
-//     initialState
-//   );
-//   const [values, setValues] = useState(initialState);
-//   const [errors, setErrors] = useState(initialErrors);
-//   const [isValid, setValid] = useState(initialIsValid);
-//   const [touched, setTouched] = useState({});
-  
- 
-//   const changeHandler = ({ target: { value, name } }) => {
-//     const newValues = { ...values, [name]: value };
-//     const { isValid, errors } = validate(validations, newValues);
-//     setValues(newValues);
-//     setErrors(errors);
-//     setValid(isValid);
-//     setTouched({ ...touched, [name]: true });
-//   };
+  const showDVDFields = () => {
+    setDvdFields(true);
+    setfurnitureFields(false);
+    setBookFields(false);
+  };
+  const [furnitureFields, setfurnitureFields] = useState(false);
+  const showfurnitureFields = () => {
+    setfurnitureFields(true);
+    setDvdFields(false);
+    setBookFields(false);
+  };
+  const [bookFields, setBookFields] = useState(false);
+  const showBookFields = () => {
+    setBookFields(true);
+    setDvdFields(false);
+    setfurnitureFields(false);
+  };
 
+  const [category, setCategory] = useState("");
+  const handleChange = (e) => {
+    setCategory(e.target.value);
+  };
 
-//   return { values, errors, touched, isValid, changeHandler,setErrors};
-// }
+  return {
+    dvdFields,
+    showDVDFields,
+    furnitureFields,
+    showfurnitureFields,
+    bookFields,
+    showBookFields,
+    category,
+    handleChange,
+  };
+};
 
-// export function isRequired(value) {
-//   return value != null;
-// }
+export default useForm;
