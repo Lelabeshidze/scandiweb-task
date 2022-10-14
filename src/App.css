@@ -51,12 +51,12 @@ a {
   padding: auto; */
 }
 
-.ProductForm{
+.ProductForm {
   /* height: 900px; */
   width: 80%;
   margin: auto;
   padding: auto;
-  margin-top:2%;
+  margin-top: 2%;
 }
 
 .Padding {
@@ -73,7 +73,7 @@ a {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top:10%;
+  margin-top: 10%;
 }
 .DeleteCheckbox {
   display: flex;
@@ -91,22 +91,19 @@ a {
 .Add-btn {
   right: 20px;
 }
-.Title{
+.Title {
   /* right: 35px; */
   font-size: 30x;
- 
+  color: #482880;
 }
-.Buttons{
+.Buttons {
   /* margin-left: 400px; */
-/* margin-top: 50px; */
-}
-.Card{
-  background-color: blueviolet;
-}
-.Footer {
-margin-top: 200px;
+  /* margin-top: 50px; */
 }
 
+.Footer {
+  margin-top: 200px;
+}
 
 .Line {
   height: 5px;
@@ -118,6 +115,13 @@ margin-top: 200px;
     transparent 3px
   );
 }
-.FooterText{
+.FooterText {
   color: #e04f4f;
+}
+.ContentColor {
+  color: aliceblue;
+}
+.FormContent {
+  background-color: rgb(73, 73, 232);
+  height: 100px;
 }

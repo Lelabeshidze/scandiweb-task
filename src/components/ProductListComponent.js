@@ -93,14 +93,14 @@ const ProductListComponent = () => {
                 </div>
 
                 {product.Category === "DVD" ? (
-                  <div style={{color:"white"}}>
+                  <div className="ContentColor">
                     <Typography>Category-{product.Category}</Typography>
                     <Typography>Name-{product.Name}</Typography>
                     <Typography>Price-${product.Price}</Typography>
                     <Typography>Size-{product.Size}MB</Typography>
                   </div>
                 ) : product.Category === "Book" ? (
-                  <div  style={{color:"white"}}>
+                  <div className="ContentColor">
                     {" "}
                     <Typography>Category-{product.Category}</Typography>
                     <Typography>Name-{product.Name}</Typography>
@@ -108,7 +108,7 @@ const ProductListComponent = () => {
                     <Typography>Weight-{product.Weight}kg</Typography>
                   </div>
                 ) : (
-                  <div  style={{color:"white"}}>
+                  <div className="ContentColor">
                     {" "}
                     <Typography>Category-{product.Category}</Typography>
                     <Typography>Name-{product.Name}</Typography>
@@ -124,8 +124,8 @@ const ProductListComponent = () => {
         ))}
       </div>
       <div>
-      <div class="Line Footer"></div>
-      <h2 className="FooterText">Scandiweb Test assignment</h2>
+        <div className="Line Footer"></div>
+        <h2 className="FooterText">Scandiweb Test assignment</h2>
       </div>
     </div>
   );

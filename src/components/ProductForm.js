@@ -97,7 +97,7 @@ const ProductForm = () => {
     <div className="ProductForm">
       <div className="Flex FormContent">
         <div>
-          <Typography color="green">Product Add</Typography>
+          <h2 className="Title">Product Add</h2>
         </div>
         <div className="Flex FlexBtn">
           <div className="Padding">
@@ -253,7 +253,7 @@ const ProductForm = () => {
         </FormControl>
       </div>
       <div>
-      <div class="Line Footer"></div>
+      <div className="Line Footer"></div>
       <h2 className="FooterText">Scandiweb Test assignment</h2>
       </div>
     </div>
