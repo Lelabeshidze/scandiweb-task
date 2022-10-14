@@ -33,17 +33,18 @@ const ProductListComponent = () => {
       setChecked(isChecked.filter((e) => e !== value));
     }
   };
-
+  useEffect(() => {
+    getProduct();
+  }, []);
   const deleteProduct = async () => {
     isChecked.map((sku) => {
       const { data } = instance.delete(`/api/product/${sku}/delete`);
       getProduct();
     });
+    window.location.reload(false);
     console.log(isChecked);
+    
   };
-  useEffect(() => {
-    getProduct();
-  }, []);
 
   return (
     <div className="Container">
