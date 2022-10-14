@@ -27,7 +27,6 @@ const ProductForm = () => {
     Height: "",
     Width: "",
     Length: "",
-
   });
   const [formErrors, setFormErrors] = useState({});
   const { validateDVD, validateBook, validateFurniture } = Validation();
@@ -38,11 +37,11 @@ const ProductForm = () => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value,Category
+      [name]: value,
+      Category,
     });
   };
 
- 
   const handleshowhide = (e) => {
     const getForm = e.target.value;
     setShowHide(getForm);
@@ -61,7 +60,7 @@ const ProductForm = () => {
       !validationResultDVD.Size
     ) {
       addProduct(formValues);
-      console.log(formValues)
+      console.log(formValues);
       navigate("/");
     } else setFormErrors(validationResultDVD);
 
@@ -95,19 +94,19 @@ const ProductForm = () => {
   };
 
   return (
-    <div>
-      <div className="Flex">
+    <div className="ProductForm">
+      <div className="Flex FormContent">
         <div>
-          <Typography>Product Add</Typography>
+          <Typography color="green">Product Add</Typography>
         </div>
         <div className="Flex FlexBtn">
           <div className="Padding">
-            <Button variant="outlined" onClick={handleOnSubmit} id="ADD">
+            <Button variant="contained" onClick={handleOnSubmit} id="ADD" color="success">
               Save
             </Button>
           </div>
           <div>
-            <Button variant="outlined" sx={{ width: "150px" }} onClick={cancel}>
+            <Button variant="contained" sx={{ width: "150px" }} onClick={cancel} color="warning">
               Cancel
             </Button>
           </div>
@@ -186,7 +185,7 @@ const ProductForm = () => {
           {Category === "DVD" && (
             <TextField
               id="size"
-              label="Size"
+              label="Size(MB)"
               type="number"
               name="Size"
               required
@@ -200,7 +199,7 @@ const ProductForm = () => {
           {Category === "Book" && (
             <TextField
               id="weight"
-              label="Weight"
+              label="Weight(kg)"
               type="number"
               name="Weight"
               required
@@ -215,7 +214,7 @@ const ProductForm = () => {
             <FormControl required={true} id="product_form">
               <TextField
                 id="height"
-                label="Height"
+                label="Height(cm)"
                 type="number"
                 name="Height"
                 required
@@ -227,7 +226,7 @@ const ProductForm = () => {
               />
               <TextField
                 id="width"
-                label="Width"
+                label="Width(cm)"
                 type="number"
                 name="Width"
                 required
@@ -239,7 +238,7 @@ const ProductForm = () => {
               />
               <TextField
                 id="length"
-                label="Length"
+                label="Length(cm)"
                 type="number"
                 name="Length"
                 required
@@ -252,6 +251,10 @@ const ProductForm = () => {
             </FormControl>
           )}
         </FormControl>
+      </div>
+      <div>
+      <div class="Line Footer"></div>
+      <h2 className="FooterText">Scandiweb Test assignment</h2>
       </div>
     </div>
   );

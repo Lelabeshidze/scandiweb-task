@@ -9,8 +9,8 @@ export const ProductContextProvider = ({ children }) => {
   const addProduct = async (values) => {
     try {
       const { data } = await instance.post("/api/product/save", values);
-    } catch (err) {
-      return err;
+    } catch(err ){
+      console.log(err.response.message)
     }
   };
   return (

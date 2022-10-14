@@ -40,35 +40,49 @@ const ProductListComponent = () => {
       getProduct();
     });
     console.log(isChecked);
-  
   };
   useEffect(() => {
     getProduct();
   }, []);
 
   return (
-    <div>
-      <div>
-        <Link to="/add-product">
-          <Button variant="outlined" id="product_form" className="Add-btn">
-            ADD
+    <div className="Container">
+      <div className="Header">
+        <div>
+          <Link to="/">
+            <h2>Product List</h2>
+          </Link>
+        </div>
+        <div className="Buttons">
+          <Link to="/add-product">
+            <Button
+              variant="contained"
+              id="product_form"
+              className="Add-btn"
+              color="success"
+            >
+              ADD
+            </Button>
+          </Link>
+          <Button
+            color="warning"
+            variant="contained"
+            id="delete-product-btn"
+            onClick={deleteProduct}
+          >
+            MASS DELETE
           </Button>
-        </Link>
-
-        <Button
-          variant="outlined"
-          id="delete-product-btn"
-          onClick={deleteProduct}
-        >
-          MASS DELETE
-        </Button>
+        </div>
       </div>
-      <h1>Product List</h1>
       <div className="ProductList">
         {product?.map((product, key) => (
           <div key={key}>
             <CardContent>
-              <Card sx={{ width: 300, height: 200 }}>
+              <Card
+                sx={{ width: 300, height: 200 }}
+                raised
+                style={{ backgroundColor: "rgb(73, 73, 232)" }}
+              >
                 <div className="DeleteCheckbox delete-checkbox">
                   <Checkbox
                     className="delete-checkbox"
@@ -77,16 +91,41 @@ const ProductListComponent = () => {
                     onChange={(e) => handleCheckBox(e)}
                   />
                 </div>
-                <div>
-                  <Typography>Name-{product.Name}</Typography>
-                  <Typography>Price-${product.Price}</Typography>
-                  <Typography>Size-{product.Size}</Typography>
-                  <Typography>Height-{product.Height} </Typography>
-                </div>
+
+                {product.Category === "DVD" ? (
+                  <div style={{color:"white"}}>
+                    <Typography>Category-{product.Category}</Typography>
+                    <Typography>Name-{product.Name}</Typography>
+                    <Typography>Price-${product.Price}</Typography>
+                    <Typography>Size-{product.Size}MB</Typography>
+                  </div>
+                ) : product.Category === "Book" ? (
+                  <div  style={{color:"white"}}>
+                    {" "}
+                    <Typography>Category-{product.Category}</Typography>
+                    <Typography>Name-{product.Name}</Typography>
+                    <Typography>Price-${product.Price}</Typography>
+                    <Typography>Weight-{product.Weight}kg</Typography>
+                  </div>
+                ) : (
+                  <div  style={{color:"white"}}>
+                    {" "}
+                    <Typography>Category-{product.Category}</Typography>
+                    <Typography>Name-{product.Name}</Typography>
+                    <Typography>Price-${product.Price}</Typography>
+                    <Typography>height-{product.Height}cm</Typography>
+                    <Typography>Length-{product.Length}cm</Typography>
+                    <Typography>Width-{product.Width}cm</Typography>
+                  </div>
+                )}
               </Card>
             </CardContent>
           </div>
         ))}
+      </div>
+      <div>
+      <div class="Line Footer"></div>
+      <h2 className="FooterText">Scandiweb Test assignment</h2>
       </div>
     </div>
   );

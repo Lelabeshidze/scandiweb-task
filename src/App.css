@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-margin-top: 2%;
+  margin-top: 2%;
 }
 
 .App-logo {
@@ -27,9 +27,10 @@ a {
   color: white;
 }
 
-
-.App-link {
-  color: #61dafb;
+.Container {
+  width: 80%;
+  margin: auto;
+  padding: auto;
 }
 
 @keyframes App-logo-spin {
@@ -45,26 +46,78 @@ a {
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
+  top: 50%;
   /* margin: auto;
   padding: auto; */
 }
 
-.Padding{
+.ProductForm{
+  /* height: 900px; */
+  width: 80%;
+  margin: auto;
+  padding: auto;
+  margin-top:2%;
+}
+
+.Padding {
   padding-right: 20px;
 }
-.Center{
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-margin-top: 5%;
+.Center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 5%;
 }
-.ProductList{
+.ProductList {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top:10%;
 }
-.DeleteCheckbox{
+.DeleteCheckbox {
   display: flex;
   justify-self: flex-start;
+}
+.Header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  /* padding-top: 70px; */
+  background-color: rgb(73, 73, 232);
+  height: 100px;
+}
+.Add-btn {
+  right: 20px;
+}
+.Title{
+  /* right: 35px; */
+  font-size: 30x;
+ 
+}
+.Buttons{
+  /* margin-left: 400px; */
+/* margin-top: 50px; */
+}
+.Card{
+  background-color: blueviolet;
+}
+.Footer {
+margin-top: 200px;
+}
+
+
+.Line {
+  height: 5px;
+  background: linear-gradient(
+    to bottom,
+    transparent 2px,
+    black 2px,
+    black 3px,
+    transparent 3px
+  );
+}
+.FooterText{
+  color: #e04f4f;
 }
