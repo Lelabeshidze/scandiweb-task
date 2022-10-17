@@ -10,6 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import { instance } from "../hooks/instance";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const ProductListComponent = () => {
   const [product, setProduct] = useState([]);
@@ -43,9 +44,8 @@ const ProductListComponent = () => {
     });
     window.location.reload(false);
     console.log(isChecked);
-    
   };
-
+  console.log(product);
   return (
     <div className="Container">
       <div className="Header">
@@ -65,14 +65,21 @@ const ProductListComponent = () => {
               ADD
             </Button>
           </Link>
-          <Button
-            color="warning"
-            variant="contained"
-            id="delete-product-btn"
-            onClick={deleteProduct}
-          >
-            MASS DELETE
-          </Button>
+          {product.length === 0 ? (
+            <Button color="warning" variant="contained" id="delete-product-btn">
+              MASS DELETE
+            </Button>
+          ) : (
+            <Button
+              color="warning"
+              variant="contained"
+              id="delete-product-btn"
+              onClick={deleteProduct}
+              className="delete-checkbox"
+            >
+              MASS DELETE
+            </Button>
+          )}
         </div>
       </div>
       <div className="ProductList">
@@ -84,7 +91,7 @@ const ProductListComponent = () => {
                 raised
                 style={{ backgroundColor: "rgb(73, 73, 232)" }}
               >
-                <div className="DeleteCheckbox delete-checkbox">
+                <div className="delete-checkbox DeleteCheckbox">
                   <Checkbox
                     className="delete-checkbox"
                     value={product.SKU}
@@ -93,17 +100,17 @@ const ProductListComponent = () => {
                   />
                 </div>
 
-                {product.Category === "DVD" ? (
+                {product.productType === "DVD" ? (
                   <div className="ContentColor">
-                    <Typography>Category-{product.Category}</Typography>
+                    <Typography  id="productType">productType-{product.productType}</Typography>
                     <Typography>Name-{product.Name}</Typography>
                     <Typography>Price-${product.Price}</Typography>
                     <Typography>Size-{product.Size}MB</Typography>
                   </div>
-                ) : product.Category === "Book" ? (
+                ) : product.productType === "Book" ? (
                   <div className="ContentColor">
                     {" "}
-                    <Typography>Category-{product.Category}</Typography>
+                    <Typography  id="productType">productType-{product.productType}</Typography>
                     <Typography>Name-{product.Name}</Typography>
                     <Typography>Price-${product.Price}</Typography>
                     <Typography>Weight-{product.Weight}kg</Typography>
@@ -111,7 +118,7 @@ const ProductListComponent = () => {
                 ) : (
                   <div className="ContentColor">
                     {" "}
-                    <Typography>Category-{product.Category}</Typography>
+                    <Typography  id="productType">productType-{product.productType}</Typography>
                     <Typography>Name-{product.Name}</Typography>
                     <Typography>Price-${product.Price}</Typography>
                     <Typography>height-{product.Height}cm</Typography>

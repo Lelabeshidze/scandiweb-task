@@ -8,7 +8,7 @@ header("Access-Control-Allow-Methods: *");
 include 'DbConnect.php';
 $objDb = new DbConnect;
 $conn = $objDb->connect();
-$type = array('DVD', 'Furniture', 'Book');
+
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
@@ -32,26 +32,28 @@ switch ($method) {
 
     case "POST":
 
-            $product = json_decode( file_get_contents('php://input') );
-            $sql = "INSERT INTO products(SKU, Category,Name, Price, Size, Weight, Height, Length, Width) VALUES(:SKU,:Category,:Name,:Price,:Size,:Weight, :Height,:Length,:Width)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':SKU', $product->SKU);
-            $stmt->bindParam(':Category', $product->Category);
-            $stmt->bindParam(':Name', $product->Name);
-            $stmt->bindParam(':Price', $product->Price);
-            $stmt->bindParam(':Size', $product->Size);
-            $stmt->bindParam(':Weight', $product->Weight);
-            $stmt->bindParam(':Height', $product->Height);
-            $stmt->bindParam(':Length', $product->Length);
-            $stmt->bindParam(':Width', $product->Width);
-            
-            if($stmt->execute()) {
-                $response = ['status' => 1, 'message' => 'Record created successfully.'];
-            } else {
-                $response = ['status' => 0, 'message' => 'Failed to create record.'];
-            }
-            echo json_encode($response);
-            break;
+
+        
+        $product = json_decode(file_get_contents('php://input'));
+        $sql = "INSERT INTO products(SKU, productType,Name, Price, Size, Weight, Height, Length, Width) VALUES(:SKU,:productType,:Name,:Price,:Size,:Weight, :Height,:Length,:Width)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':SKU', $product->SKU);
+        $stmt->bindParam(':productType', $product->productType);
+        $stmt->bindParam(':Name', $product->Name);
+        $stmt->bindParam(':Price', $product->Price);
+        $stmt->bindParam(':Size', $product->Size);
+        $stmt->bindParam(':Weight', $product->Weight);
+        $stmt->bindParam(':Height', $product->Height);
+        $stmt->bindParam(':Length', $product->Length);
+        $stmt->bindParam(':Width', $product->Width);
+
+        if ($stmt->execute()) {
+            $response = ['status' => 1, 'message' => 'Record created successfully.'];
+        } else {
+            $response = ['status' => 0, 'message' => 'Failed to create record.'];
+        }
+        echo json_encode($response);
+        break;
 
 
     case "DELETE":

@@ -17,7 +17,7 @@ import { Box } from "@mui/system";
 import Validation from "./Validation";
 
 const ProductForm = () => {
-  const [Category, setShowHide] = useState("");
+  const [productType, setShowHide] = useState("");
   const [formValues, setFormValues] = useState({
     SKU: "",
     Name: "",
@@ -38,7 +38,7 @@ const ProductForm = () => {
     setFormValues({
       ...formValues,
       [name]: value,
-      Category,
+      productType,
     });
   };
 
@@ -53,7 +53,7 @@ const ProductForm = () => {
     const validationResultBook = validateBook(formValues);
     const validationResultFurniture = validateFurniture(formValues);
     if (
-      Category === "DVD" &&
+      productType === "DVD" &&
       !validationResultDVD.SKU &&
       !validationResultDVD.Name &&
       !validationResultDVD.Price &&
@@ -61,22 +61,20 @@ const ProductForm = () => {
     ) {
       addProduct(formValues);
       console.log(formValues);
-      navigate("/");
     } else setFormErrors(validationResultDVD);
 
     if (
-      Category === "Book" &&
+      productType === "Book" &&
       !validationResultBook.SKU &&
       !validationResultBook.Name &&
       !validationResultBook.Price &&
       !validationResultBook.Weight
     ) {
       addProduct(formValues);
-      navigate("/");
     } else setFormErrors(validationResultBook);
 
     if (
-      Category === "Furniture" &&
+      productType === "Furniture" &&
       !validationResultFurniture.SKU &&
       !validationResultFurniture.Name &&
       !validationResultFurniture.Price &&
@@ -85,7 +83,6 @@ const ProductForm = () => {
       !validationResultFurniture.Length
     ) {
       addProduct(formValues);
-      navigate("/");
     } else setFormErrors(validationResultFurniture);
   };
 
@@ -101,19 +98,33 @@ const ProductForm = () => {
         </div>
         <div className="Flex FlexBtn">
           <div className="Padding">
-            <Button variant="contained" onClick={handleOnSubmit} id="ADD" color="success">
+            <Button
+              variant="contained"
+              onClick={handleOnSubmit}
+              id="ADD"
+              color="success"
+            >
               Save
             </Button>
           </div>
           <div>
-            <Button variant="contained" sx={{ width: "150px" }} onClick={cancel} color="warning">
+            <Button
+              variant="contained"
+              sx={{ width: "150px" }}
+              onClick={cancel}
+              color="warning"
+            >
               Cancel
             </Button>
           </div>
         </div>
       </div>
-      <div className="Center" id="product_form">
-        <FormControl sx={{ width: "55%" }} required={true} id="product_form">
+      <div className="Center product_form">
+        <FormControl
+          sx={{ width: "55%" }}
+          required={true}
+          id="product_form productType"
+        >
           <TextField
             id="sku"
             label="SKU"
@@ -151,110 +162,122 @@ const ProductForm = () => {
             helperText={formErrors.Price}
             margin="dense"
           />
-
-          <Box>
-            <FormControl fullWidth required={true} id="product_form">
-              <InputLabel
-                id="demo-simple-select-label"
-                error={!!formErrors.Category}
-              >
-                Product Type
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select productType"
-                name="Category"
-                value={Category}
-                label="Product Type"
-                onChange={(e) => handleshowhide(e)}
-                displayEmpty={false}
-              >
-                <MenuItem id="DVD" name="DVD" value="DVD">
-                  DVD
-                </MenuItem>
-                <MenuItem name="Furniture" id="Furniture" value="Furniture">
-                  Furniture
-                </MenuItem>
-                <MenuItem id="Book" value="Book" name="Book">
-                  Book
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-
-          {Category === "DVD" && (
-            <TextField
-              id="size"
-              label="Size(MB)"
-              type="number"
-              name="Size"
-              required
-              value={formValues.Size}
-              onChange={handleOnChange}
-              error={!!formErrors.Size}
-              helperText={formErrors.Size}
-              margin="dense"
-            />
-          )}
-          {Category === "Book" && (
-            <TextField
-              id="weight"
-              label="Weight(kg)"
-              type="number"
-              name="Weight"
-              required
-              value={formValues.Weight}
-              onChange={handleOnChange}
-              error={!!formErrors.Weight}
-              helperText={formErrors.Weight}
-              margin="dense"
-            />
-          )}
-          {Category === "Furniture" && (
-            <FormControl required={true} id="product_form">
-              <TextField
-                id="height"
-                label="Height(cm)"
-                type="number"
-                name="Height"
-                required
-                value={formValues.Height}
-                onChange={handleOnChange}
-                error={!!formErrors.Height}
-                helperText={formErrors.Height}
-                margin="dense"
-              />
-              <TextField
-                id="width"
-                label="Width(cm)"
-                type="number"
-                name="Width"
-                required
-                value={formValues.Width}
-                onChange={handleOnChange}
-                error={!!formErrors.Width}
-                helperText={formErrors.Width}
-                margin="dense"
-              />
-              <TextField
-                id="length"
-                label="Length(cm)"
-                type="number"
-                name="Length"
-                required
-                value={formValues.Length}
-                onChange={handleOnChange}
-                error={!!formErrors.Length}
-                helperText={formErrors.Length}
-                margin="dense"
-              />
-            </FormControl>
-          )}
+          <div id="product_form productType">
+            <Box>
+              <FormControl fullWidth required={true} id="product_form">
+                <InputLabel
+                  id="demo-simple-select-label"
+                  error={!!formErrors.productType}
+                >
+                  Product Type
+                </InputLabel>
+                <Select
+                  id="productType"
+                  name="productType"
+                  value={productType}
+                  label="Product Type"
+                  onChange={(e) => handleshowhide(e)}
+                  className="Select"
+                >
+                  <MenuItem value="DVD" name="DVD" id="DVD">
+                    DVD
+                  </MenuItem>
+                  <MenuItem value="Furniture" name="Furniture" id="Furniture">
+                    Furniture
+                  </MenuItem>
+                  <MenuItem value="Book" name="Book" id="Book">
+                    Book
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+          <>
+            {productType === "DVD" && (
+              <>
+                <TextField
+                  id="size"
+                  label="Size(MB)"
+                  type="number"
+                  name="Size"
+                  required
+                  value={formValues.Size}
+                  onChange={handleOnChange}
+                  error={!!formErrors.Size}
+                  helperText={formErrors.Size}
+                  margin="dense"
+                />
+                <span>Please, provide size </span>
+              </>
+            )}
+          </>
+          <>
+            {productType === "Book" && (
+              <>
+                <TextField
+                  id="weight"
+                  label="Weight(kg)"
+                  type="number"
+                  name="Weight"
+                  required
+                  value={formValues.Weight}
+                  onChange={handleOnChange}
+                  error={!!formErrors.Weight}
+                  helperText={formErrors.Weight}
+                  margin="dense"
+                />
+                <span>Please, provide weight  </span>
+              </>
+            )}
+          </>
+          <>
+            {productType === "Furniture" && (
+              <>
+                <TextField
+                  id="height"
+                  label="Height(cm)"
+                  type="number"
+                  name="Height"
+                  required
+                  value={formValues.Height}
+                  onChange={handleOnChange}
+                  error={!!formErrors.Height}
+                  helperText={formErrors.Height}
+                  margin="dense"
+                />
+                <TextField
+                  id="width"
+                  label="Width(cm)"
+                  type="number"
+                  name="Width"
+                  required
+                  value={formValues.Width}
+                  onChange={handleOnChange}
+                  error={!!formErrors.Width}
+                  helperText={formErrors.Width}
+                  margin="dense"
+                />
+                <TextField
+                  id="length"
+                  label="Length(cm)"
+                  type="number"
+                  name="Length"
+                  required
+                  value={formValues.Length}
+                  onChange={handleOnChange}
+                  error={!!formErrors.Length}
+                  helperText={formErrors.Length}
+                  margin="dense"
+                />
+                <span>Please, provide dimensions in HxWxL format!</span>
+              </>
+            )}
+          </>
         </FormControl>
       </div>
       <div>
-      <div className="Line Footer"></div>
-      <h2 className="FooterText">Scandiweb Test assignment</h2>
+        <div className="Line Footer"></div>
+        <h2 className="FooterText">Scandiweb Test assignment</h2>
       </div>
     </div>
   );

@@ -89,16 +89,12 @@ a {
   height: 100px;
 }
 .Add-btn {
-  right: 20px;
+  right: 60px;
 }
 .Title {
   /* right: 35px; */
   font-size: 30x;
   color: #482880;
-}
-.Buttons {
-  /* margin-left: 400px; */
-  /* margin-top: 50px; */
 }
 
 .Footer {
@@ -124,4 +120,7 @@ a {
 .FormContent {
   background-color: rgb(73, 73, 232);
   height: 100px;
+}
+.Select {
+  width: 390px;
 }
