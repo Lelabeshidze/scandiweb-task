@@ -13,7 +13,7 @@ export const ProductContextProvider = ({ children }) => {
       const { data } = await instance.post("/api/product/save", values);
       navigate("/");
     } catch(err ){
-      console.log(err.response.message)
+      console.log(err)
     }
   };
   return (
