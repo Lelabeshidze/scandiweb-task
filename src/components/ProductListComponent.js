@@ -42,7 +42,7 @@ const ProductListComponent = () => {
       const { data } = instance.delete(`/api/product/${sku}/delete`);
       getProduct();
     });
-    // window.location.reload(false);
+    window.location.reload(false);
     console.log(isChecked);
   };
   console.log(product);
