@@ -4,9 +4,9 @@
 
 3.Open project folder in the terminal and run composer update
 
-3.Make database(products_server) and table(products) in phpMyAdmin with columns(SKU, productType,Name, Price, Size, Weight, Height, Length, Width)
+4.Make database(products_server) and table(products) in phpMyAdmin with columns(SKU, productType,Name, Price, Size, Weight, Height, Length, Width)
 
-4.Start Apache and MySQL from XAMPP Control Panel
+5.Start Apache and MySQL from XAMPP Control Panel
 
-5.The website should now be accessible  on the indicated link or localhost:3000 after you run npm install.
+6.The website should now be accessible  on the indicated link or localhost:3000 after you run npm install.
 
