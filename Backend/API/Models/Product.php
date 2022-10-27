@@ -54,14 +54,15 @@ class Product
         }
         echo json_encode($response);
     }
-    public static function deleteProduct(){
+    public static function deleteProduct()
+    {
         $objDb = new DbConnect;
         $connPdo = $objDb->connect();
         $sql = "DELETE FROM products WHERE SKU = :SKU";
         $path = explode('/', $_SERVER['REQUEST_URI']);
 
         $stmt = $connPdo->prepare($sql);
-        $stmt->bindParam(':SKU', $path[3]);
+        $stmt->bindParam(':SKU', $path[4]);
 
         if ($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record deleted successfully.'];

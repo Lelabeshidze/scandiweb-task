@@ -14,6 +14,6 @@ if ($method === 'GET') {
     return Product::select();
 } elseif ($method === 'POST') {
     return ProductController::post();
-} else {
+} elseif($method === 'DELETE') {
     return ProductController::delete();
 }
