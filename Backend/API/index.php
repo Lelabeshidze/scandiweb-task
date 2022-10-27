@@ -11,7 +11,7 @@ use App\Models\Product;
 
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method === 'GET') {
-    return Product::select();
+    return ProductController::get();
 } elseif ($method === 'POST') {
     return ProductController::post();
 } elseif($method === 'DELETE') {

@@ -1,8 +1,8 @@
 1.Download and install XAMPP from https://www.apachefriends.org/
 
 2.Clone the repository and move API folder into the xampp/htdocs folder
-
-3.Make database(scandiwebtask) and table(products) in phpMyAdmin with columns(SKU, Category,Name, Price, Size, Weight, Height, Length, Width)
+3.Open project folder in the terminal and run composer update
+3.Make database(products_server) and table(products) in phpMyAdmin with columns(SKU, productType,Name, Price, Size, Weight, Height, Length, Width)
 
 4.Start Apache and MySQL from XAMPP Control Panel
 

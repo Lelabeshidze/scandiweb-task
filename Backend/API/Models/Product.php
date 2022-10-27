@@ -32,6 +32,8 @@ class Product
     }
     public static function createProduct()
     {
+
+
         $objDb = new DbConnect;
         $connPdo = $objDb->connect();
         $product = json_decode(file_get_contents('php://input'));
