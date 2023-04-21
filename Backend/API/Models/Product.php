@@ -5,11 +5,11 @@ namespace App\Models;
 use PDO;
 
 use App\Core\DbConnect;
+use App\Models\ProductTypes\Invalid;
 
-
-class Product
+class Product 
 {
-
+   
     public static function select()
     {
         $objDb = new DbConnect;
@@ -55,6 +55,7 @@ class Product
             $response = ['status' => 0, 'message' => 'Failed to create record.'];
         }
         echo json_encode($response);
+ 
     }
     public static function deleteProduct()
     {
