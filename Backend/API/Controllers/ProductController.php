@@ -3,21 +3,10 @@
 namespace App\Controllers;
 
 
-use App\Models\Product;
-
-
-class ProductController
+abstract class ProductController
 {
-    public static  function get()
-    {
-        return Product::select();
-    }
-    public static function post()
-    {
-        return Product::createProduct();
-    }
-    public static function delete()
-    {
-        return Product::deleteProduct();
-    }
+
+    abstract protected function select();
+    abstract protected function createProduct();
+    abstract protected function deleteProduct();
 }

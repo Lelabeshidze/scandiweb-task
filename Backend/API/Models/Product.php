@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Core\DbConnect;
+
+use App\Controllers\ProductController;
+use App\Models\ProductTypes\Book;
+use App\Models\ProductTypes\DVD;
+use App\Models\ProductTypes\Furniture;
 use PDO;
 
-use App\Core\DbConnect;
-use App\Models\ProductTypes\Invalid;
-
-class Product 
+class Product extends ProductController
 {
-   
-    public static function select()
+
+    public function select()
     {
         $objDb = new DbConnect;
         $connPdo = $objDb->connect();
@@ -30,10 +33,15 @@ class Product
 
         echo json_encode($products);
     }
-    public static function createProduct()
+    public function createProduct()
     {
 
-
+        // $bookValidation = new Book();
+        // $bookValidation->validateValue();
+        // $DVDValidation = new DVD();
+        // $DVDValidation->validateValue();
+        // $FurnitureValidation = new Furniture();
+        // $FurnitureValidation->validateValue();
         $objDb = new DbConnect;
         $connPdo = $objDb->connect();
         $product = json_decode(file_get_contents('php://input'));
@@ -55,9 +63,8 @@ class Product
             $response = ['status' => 0, 'message' => 'Failed to create record.'];
         }
         echo json_encode($response);
- 
     }
-    public static function deleteProduct()
+    public function deleteProduct()
     {
         $objDb = new DbConnect;
         $connPdo = $objDb->connect();

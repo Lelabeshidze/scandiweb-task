@@ -6,8 +6,10 @@ use App\Models\Product;
 
 class Book extends MainProduct
 {
-    protected function validateValue()
+    public function validateValue()
     {
+        $createProduct = new Product();
+       
         $product = json_decode(file_get_contents('php://input'));
         if (!$product['weight']) {
             return "Weight was not provided!";
@@ -15,9 +17,10 @@ class Book extends MainProduct
 
         if (is_numeric($product['weight']) && floatval($product['weight'] >= 0)) {
             $product->value = 'Weight: ' . $product['weight'] . ' KG';
-            return "";
+            return $createProduct;
         }
 
         return "Invalid value for weight!";
     }
+
 }
